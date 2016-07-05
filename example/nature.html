@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="chicken" src="models/chicken/ayam.dae"></a-asset-item>
+
+        <a-asset-item id="nature-obj" src="models/naturePack/Models/naturePack_050.obj"></a-asset-item>
+        <a-asset-item id="nature-mtl" src="models/naturePack/Models/naturePack_050.mtl"></a-asset-item>
+      </a-assets>
+
+      <a-entity collada-model="#chicken" position="0 1 0"></a-entity>
+
+      <!-- <a-entity obj-model="obj: #nature-obj; mtl: #nature-mtl"></a-entity> -->
+
+      <a-plane rotation="-90 0 0" position="25 0 -30" width="50" height="60" color="#244247"></a-plane>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+    <script>
+    var assets = document.querySelector('a-assets');
+    var scene = document.querySelector('a-scene');
+    var types = ['obj', 'mtl'];
+
+    var rowCount = 0;
+    var colCount = 0;
+    for (var i = 1; i < 175; i++) {
+      var numString = ('000' + i).slice(-3);
+      types.forEach(function(type) {
+        var assetItem = document.createElement('a-asset-item');
+        assetItem.setAttribute('id', 'mod-' + numString + '-' + type);
+        assetItem.setAttribute('src', 'models/naturePack/Models/naturePack_' + numString + '.' + type);
+        assets.appendChild(assetItem);
+      });
+
+      var entity = document.createElement('a-entity');
+      entity.setAttribute('obj-model','obj: #mod-' + numString + '-obj; mtl: #mod-' + numString + '-mtl');
+
+      var spacing = 4;
+      entity.setAttribute('position', { x: colCount * spacing, y: 0, z: rowCount * -spacing});
+
+      colCount++;
+      if (colCount > 10) {
+        colCount = 0;
+        rowCount++;
+      }
+
+      scene.appendChild(entity);
+    }
+    </script>
+    <script src="../build/aframe-editor.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity id="rover" obj-model="obj: url(models/rover/rover_mesh.obj)" material="src: url(models/rover/rover_diffuse.png)"></a-entity>
+
+      <a-plane rotation="-90 0 0" position="0 0 0" width="4" height="4" color="#244247"></a-plane>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+    <script src="../build/aframe-editor.js"></script>
+  </body>
+</html>
